@@ -1,3 +1,7 @@
+/*
+This file will create an entry in our Nosql DB
+*/
+
 console.log('starting function');
 const AWS= require('aws-sdk');
 const docClient=new AWS.DynamoDB.DocumentClient({region: 'us-east-1'});
