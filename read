@@ -1,0 +1,38 @@
+/*
+This fuction will return data from our NoSql DB using scan 
+*/
+
+console.log('starting function');
+const AWS= require('aws-sdk');
+const docClient=new AWS.DynamoDB.DocumentClient({region: 'us-east-1'});
+
+exports.handler = function(e, ctx, cb) 
+{
+
+	let scanParameter={
+		TableName:'guestbook',
+		Limit:100
+	};
+	docClient.scan(scanParameter,function(err,data){
+		if(err){
+			cb(err,null);
+		}else{
+			cb(null,data);
+		}
+	});
+	
+	/* var params={
+		TableName='guestbook',
+		Key={
+			"date": 
+		}
+	}
+	docClient.get(params,function(err,data){
+		if(err){
+			cb(err,null);
+		}
+		else{
+			cb(null,data);
+		}
+	})*/
+}
